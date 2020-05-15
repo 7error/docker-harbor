@@ -1,0 +1,2 @@
+#!/usr/bin/with-contenv sh
+/usr/sbin/nginx -c /etc/portal/nginx.conf -g "daemon off;"

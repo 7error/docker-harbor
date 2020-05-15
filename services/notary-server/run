@@ -1,0 +1,10 @@
+#!/usr/bin/with-contenv sh
+
+export SERVICE_NAME=notary_server
+export MIGRATIONS_PATH=/migrations/server/postgresql
+export DB_URL=postgres://postgres:root123@127.0.0.1:5432/notaryserver?sslmode=disable
+
+
+/wait-for-postgres.sh -- /usr/local/bin/migrate-patch -database=${DB_URL} && \
+/migrations/migrate.sh && \
+/wait-for-it.sh 127.0.0.1:7899 -- /usr/local/bin/notary-server -config=/etc/notary/server-config.postgres.json -logf=json

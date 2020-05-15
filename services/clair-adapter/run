@@ -1,0 +1,9 @@
+#!/usr/bin/with-contenv sh
+
+export SCANNER_API_SERVER_ADDR=:8084
+export SCANNER_LOG_LEVEL=info
+export SCANNER_CLAIR_URL=http://127.0.0.1:6060
+export SCANNER_CLAIR_DATABASE_URL=postgresql://postgres:root123@127.0.0.1:5432/clair?sslmode=disable
+export SCANNER_STORE_REDIS_URL=redis://127.0.0.1:6379/4
+
+/usr/local/bin/clair-adapter

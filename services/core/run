@@ -1,0 +1,68 @@
+#!/usr/bin/with-contenv sh
+
+
+
+export CONFIG_PATH=/etc/core/app.conf
+export UAA_CA_ROOT=/etc/core/certificates/uaa_ca.pem
+export _REDIS_URL=127.0.0.1:6379,100,
+export SYNC_REGISTRY=false
+export SYNC_QUOTA=true
+export CHART_CACHE_DRIVER=redis
+export _REDIS_URL_REG=redis://127.0.0.1:6379/1
+
+export PORT=8080
+export LOG_LEVEL=info
+export EXT_ENDPOINT=https://192.168.9.119:8888
+export DATABASE_TYPE=postgresql
+export POSTGRESQL_HOST=127.0.0.1
+export POSTGRESQL_PORT=5432
+export POSTGRESQL_USERNAME=postgres
+export POSTGRESQL_PASSWORD=root123
+export POSTGRESQL_DATABASE=registry
+export POSTGRESQL_SSLMODE=disable
+export POSTGRESQL_MAX_IDLE_CONNS=50
+export POSTGRESQL_MAX_OPEN_CONNS=100
+export REGISTRY_URL=http://127.0.0.1:5000
+export TOKEN_SERVICE_URL=http://127.0.0.1:8080/service/token
+export HARBOR_ADMIN_PASSWORD=Harbor12345
+export MAX_JOB_WORKERS=10
+export CORE_SECRET=86TObadymyLTGfjU
+export JOBSERVICE_SECRET=7srhx6s6F02fpAlo
+export ADMIRAL_URL=
+export WITH_NOTARY=True
+export WITH_CLAIR=True
+export CLAIR_DB_PASSWORD=root123
+export CLAIR_DB_HOST=127.0.0.1
+export CLAIR_DB_PORT=5432
+export CLAIR_DB_USERNAME=postgres
+export CLAIR_DB=clair
+export CLAIR_DB_SSLMODE=disable
+export CORE_URL=http://127.0.0.1:8080
+export CORE_LOCAL_URL=http://127.0.0.1:8080
+export JOBSERVICE_URL=http://127.0.0.1:8082
+export CLAIR_URL=http://127.0.0.1:6060
+export CLAIR_ADAPTER_URL=http://127.0.0.1:8084
+export NOTARY_URL=http://127.0.0.1:14443
+export REGISTRY_STORAGE_PROVIDER_NAME=filesystem
+export READ_ONLY=false
+export RELOAD_KEY=
+export CHART_REPOSITORY_URL=http://127.0.0.1:9999
+export REGISTRY_CONTROLLER_URL=http://127.0.0.1:8085
+export WITH_CHARTMUSEUM=True
+
+export PORTAL_URL=http://127.0.0.1:8081
+export REGISTRYCTL_URL=http://127.0.0.1:8085
+
+export HTTP_PROXY=
+export HTTPS_PROXY=
+export NO_PROXY=127.0.0.1,localhost,core,registryctl,.internal,registry,redis,.local,portal,clair,notary-signer,postgresql,jobservice,notary-server,nginx,chartmuseum,clair-ad
+
+
+
+
+
+/wait-for-postgres.sh -- /init-database.sh
+cd /harbor/
+/usr/local/bin/harbor_core
+#/wait-for-it.sh 127.0.0.1:5432 --
+#/wait-for-it.sh 127.0.0.1:8080 -- 

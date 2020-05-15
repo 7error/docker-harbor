@@ -1,0 +1,24 @@
+#!/usr/bin/with-contenv sh
+
+export PGDATA=/var/lib/postgresql/data
+
+if [ -s "$PGDATA/PG_VERSION" ]; then
+	DATABASE_ALREADY_EXISTS='true'
+fi
+
+if [ -z "$DATABASE_ALREADY_EXISTS" ]; then
+    mkdir -p "$PGDATA" && chown -R postgres:postgres "$PGDATA" && chmod 777 "$PGDATA"
+    su --login postgres --command "/usr/lib/postgresql/12/bin/initdb --encoding='UTF-8' --locale='en_US.UTF-8' --username='postgres' --pwfile=<(echo 'root123') -D /var/lib/postgresql/data"
+    sed -i "s@#listen_addresses = 'localhost'@listen_addresses = '*'@g" /var/lib/postgresql/data/postgresql.conf
+    
+    echo
+    echo 'PostgreSQL init process complete; ready for start up.'
+    echo
+else
+    echo
+    echo 'PostgreSQL Database directory appears to contain a database; Skipping initialization'
+    echo
+fi
+
+#su --login postgres --command "/usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/data"
+gosu postgres /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/data
