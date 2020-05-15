@@ -12,7 +12,7 @@ export _REDIS_URL_REG=redis://127.0.0.1:6379/1
 
 export PORT=8080
 export LOG_LEVEL=info
-export EXT_ENDPOINT=https://192.168.9.119:8888
+#export EXT_ENDPOINT=https://192.168.9.119:8888
 export DATABASE_TYPE=postgresql
 export POSTGRESQL_HOST=127.0.0.1
 export POSTGRESQL_PORT=5432

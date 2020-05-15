@@ -69,7 +69,7 @@ COPY --from=goharbor/harbor-registryctl:v1.10.2  /home/harbor/harbor_registryctl
 RUN curl --fail --silent -L https://github.com/just-containers/s6-overlay/releases/download/v1.21.8.0/s6-overlay-amd64.tar.gz | tar -xzvf - -C /
 
 
-RUN curl -sfSLk http://download.redis.io/redis-stable/redis.conf \
+RUN curl -sfSLk https://raw.githubusercontent.com/antirez/redis/5.0/redis.conf \
 |grep -v -e '^\s*#' -e '^\s*$' \
 |sed -e 's@bind 127.0.0.1@bind 0.0.0.0@' \
 |sed -e "s@protected-mode yes@protected-mode no@" \
