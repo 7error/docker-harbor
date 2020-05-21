@@ -42,7 +42,7 @@ COPY --from=redis:5.0.8-buster /usr/local/bin/redis-benchmark /usr/local/bin/red
 COPY --from=redis:5.0.8-buster /usr/local/bin/redis-server /usr/local/bin/redis-server
 COPY --from=redis:5.0.8-buster /usr/local/bin/redis-cli /usr/local/bin/redis-cli
 
-RUN mkdir -p /var/lib/redis && mkdir -p /harbor/ && mkdir -p /var/log/jobs && mkdir -p /portal && mkdir -p /storage && mkdir -p /chart_storage && mkdir -p /var/lib/trivy/.cache/{trivy,reports}
+RUN mkdir -p /var/lib/redis && mkdir -p /harbor/ && mkdir -p /var/log/jobs && mkdir -p /portal && mkdir -p /storage && mkdir -p /chart_storage && mkdir -p /var/lib/trivy/.cache/trivy && mkdir -p /var/lib/trivy/.cache/reports
 
 ENV PATH $PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 ENV PGDATA /var/lib/postgresql/data
