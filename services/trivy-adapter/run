@@ -1,0 +1,4 @@
+#!/usr/bin/with-contenv sh
+
+
+/wait-for-it.sh 127.0.0.1:6379 -- envfile /etc/trivy-adapter/env /usr/local/bin/scanner-trivy
