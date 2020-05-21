@@ -15,7 +15,7 @@ storage:
     enabled: true
 redis:
   addr: 127.0.0.1:6379
-  password:
+  password: 
   db: 1
 http:
   addr: :5000
@@ -23,31 +23,11 @@ http:
   #debug:
   #  addr: localhost:5001
 auth:
-  token:
-    issuer: harbor-token-issuer
-    realm: https://192.168.9.119:8888/service/token
-    rootcertbundle: /etc/registry/root.crt
-    service: harbor-registry
+  htpasswd:
+    realm: harbor-registry-basic-realm
+    path: /etc/registry/passwd
 validation:
   disabled: true
-notifications:
-  endpoints:
-  - name: harbor
-    disabled: false
-    url: http://127.0.0.1:8080/service/notifications
-    timeout: 3000ms
-    threshold: 5
-    backoff: 1s
-    ignoredmediatypes:
-        - application/vnd.docker.image.rootfs.diff.tar.gzip
-        - application/vnd.docker.image.rootfs.foreign.diff.tar.gzip
-        - application/vnd.oci.image.layer.v1.tar
-        - application/vnd.oci.image.layer.v1.tar+gzip
-        - application/vnd.oci.image.layer.v1.tar+zstd
-        - application/vnd.oci.image.layer.nondistributable.v1.tar
-        - application/vnd.oci.image.layer.nondistributable.v1.tar+gzip
-        - application/vnd.oci.image.layer.nondistributable.v1.tar+zstd
-        - application/octet-stream
 compatibility:
   schema1:
     enabled: true
