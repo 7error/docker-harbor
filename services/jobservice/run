@@ -1,15 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-export CORE_SECRET=86TObadymyLTGfjU
-export JOBSERVICE_SECRET=7srhx6s6F02fpAlo
-export CORE_URL=http://127.0.0.1:8080
-export JOBSERVICE_WEBHOOK_JOB_MAX_RETRY=10
-
-export HTTP_PROXY=
-export HTTPS_PROXY=
-export NO_PROXY=127.0.0.1,localhost,core,registryctl,.internal,registry,redis,.local,portal,clair,notary-signer,postgresql,jobservice,notary-server,nginx,chartmuseum,clair-adapter,db,log
-
-
-export LOG_LEVEL=info
-
-/wait-for-postgres.sh -- /usr/local/bin/harbor_jobservice -c /etc/jobservice/config.yml
+/wait-for-postgres.sh -- envfile /etc/jobservice/env /usr/local/bin/harbor_jobservice -c /etc/jobservice/config.yml

@@ -1,0 +1,3 @@
+SERVICE_NAME=notary_server
+MIGRATIONS_PATH=/migrations/server/postgresql
+DB_URL=postgres://postgres:root123@127.0.0.1:5432/notaryserver?sslmode=disable
