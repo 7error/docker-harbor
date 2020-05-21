@@ -1,6 +1,6 @@
 #!/usr/bin/with-contenv sh
 
-export PGDATA=/var/lib/postgresql/data
+PGDATA=/var/lib/postgresql/data
 
 if [ -s "$PGDATA/PG_VERSION" ]; then
 	DATABASE_ALREADY_EXISTS='true'

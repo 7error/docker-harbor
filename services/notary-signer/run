@@ -1,10 +1,8 @@
 #!/usr/bin/with-contenv sh
 
-export SERVICE_NAME=notary_signer
-export NOTARY_SIGNER_DEFAULTALIAS=RBl2yjn2
-export MIGRATIONS_PATH=/migrations/signer/postgresql
-export DB_URL=postgres://postgres:root123@127.0.0.1:5432/notarysigner?sslmode=disable
+. /etc/notary/signer_env
 
-/wait-for-postgres.sh -- /usr/local/bin/migrate-patch -database=${DB_URL} && \
+/wait-for-postgres.sh -- \
+/usr/local/bin/migrate-patch -database=$DB_URL && \
 /migrations/migrate.sh && \
 /usr/local/bin/notary-signer -config=/etc/notary/signer-config.postgres.json -logf=json

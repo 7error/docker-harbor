@@ -1,7 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-export CORE_SECRET=86TObadymyLTGfjU
-export JOBSERVICE_SECRET=7srhx6s6F02fpAlo
-
-
-/wait-for-postgres.sh -- /usr/local/bin/harbor_registryctl -c /etc/registryctl/config.yml
+/wait-for-postgres.sh -- envfile /etc/registryctl/env /usr/local/bin/harbor_registryctl -c /etc/registryctl/config.yml

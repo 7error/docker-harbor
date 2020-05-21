@@ -4,7 +4,7 @@
 
 # Expects the necessary PG* variables.
 
-until psql -c '\l' -U "postgres" -tw; do
+until psql -c '\l' -U "postgres" -tw 2>/dev/null ; do
   echo >&2 "$(date +%Y%m%dt%H%M%S) Postgres is unavailable - sleeping"
   sleep 4
 done

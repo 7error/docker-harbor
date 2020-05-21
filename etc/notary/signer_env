@@ -1,0 +1,4 @@
+SERVICE_NAME=notary_signer
+NOTARY_SIGNER_DEFAULTALIAS=RBl2yjn2
+MIGRATIONS_PATH=/migrations/signer/postgresql
+DB_URL=postgres://postgres:root123@127.0.0.1:5432/notarysigner?sslmode=disable
