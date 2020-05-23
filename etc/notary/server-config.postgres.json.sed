@@ -19,7 +19,7 @@
     "auth": {
         "type": "token",
         "options": {
-            "realm": "https://192.168.9.119:8888/service/token",
+            "realm": "EXT_ENDPOINT/service/token",
             "service": "harbor-notary",
             "issuer": "harbor-token-issuer",
             "rootcertbundle": "/etc/registry/root.crt"

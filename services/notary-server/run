@@ -1,7 +1,7 @@
 #!/usr/bin/with-contenv sh
 
 . /etc/notary/server_env
-
+sed -e "s@EXT_ENDPOINT@$EXT_ENDPOINT@g" /etc/notary/server-config.postgres.json.sed > /etc/notary/server-config.postgres.json
 /wait-for-postgres.sh -- \
 /usr/local/bin/migrate-patch -database=$DB_URL && \
 /migrations/migrate.sh && \
