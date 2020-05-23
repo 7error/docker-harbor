@@ -4,6 +4,7 @@ export SERVICE_NAME=notary_server
 export MIGRATIONS_PATH=/migrations/server/postgresql
 export DB_URL=postgres://postgres:root123@127.0.0.1:5432/notaryserver?sslmode=disable
 
+sed -e "s@EXT_ENDPOINT@$EXT_ENDPOINT@g" /etc/notary/server-config.postgres.json.sed > /etc/notary/server-config.postgres.json
 
 /wait-for-postgres.sh -- /usr/local/bin/migrate-patch -database=${DB_URL} && \
 /migrations/migrate.sh && \
