@@ -1,2 +1,2 @@
 #!/usr/bin/with-contenv sh
-/usr/sbin/nginx -g "daemon off;"
+exec /usr/sbin/nginx -g "daemon off;"
