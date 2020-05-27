@@ -21,4 +21,4 @@ else
 fi
 
 #su --login postgres --command "/usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/data"
-gosu postgres /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/data
+exec gosu postgres /usr/lib/postgresql/12/bin/postgres -D /var/lib/postgresql/data
