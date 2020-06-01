@@ -1,3 +1,3 @@
 #!/usr/bin/with-contenv sh
 
-/wait-for-postgres.sh -- envfile /etc/clair-adapter/env /usr/local/bin/clair-adapter
+exec /wait-for-postgres.sh -- envfile /etc/clair-adapter/env /usr/local/bin/clair-adapter
