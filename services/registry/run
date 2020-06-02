@@ -1,3 +1,2 @@
 #!/usr/bin/with-contenv sh
-sed -e "s@EXT_ENDPOINT@$EXT_ENDPOINT@g" /etc/registry/config.yml.sed > /etc/registry/config.yml
 exec /wait-for-postgres.sh -- /usr/local/bin/registry serve /etc/registry/config.yml
