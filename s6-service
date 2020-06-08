@@ -1,0 +1,54 @@
+#!/usr/bin/with-contenv sh
+
+#---  PROGRAM  -------------------------------------------------------------------------------------------------------
+#          NAME:  s6-service
+#%   DESCRIPTION:  Mimic the ubuntu `service` utility
+#%   USAGE: service service-name [status|start|up|stop|down|reload|restart|reboot]
+#%   REQUIRES: s6-svc 
+#----------------------------------------------------------------------------------------------------------------------
+
+if [ $# -ne 2 ]; then
+	echo 's6-service requires 2 arguments: service-name and s6-action-name'
+	echo 'Example: s6-service nginx reload'
+	exit 0
+else
+	svcname=$1
+	s6action=$2
+fi
+
+if [ ! -e /var/run/s6/services/${svcname} ]; then
+	if [ ${svcname} = 'all' ] && [ ${s6action} = 'reboot' ]; then
+		exec s6-svscanctl -rb /var/run/s6/services
+	elif [ ${svcname} = 'all' ] && [ ${s6action} = 'status' ]; then
+		for sv in $(ls /var/run/s6/services/);do printf "%-20s" ${sv} ; s6-svstat /var/run/s6/services/${sv}; done;
+		exit 0
+	else
+		echo 'Service ${svcname} does not exist!'
+		exit 0
+	fi
+fi
+
+case ${s6action} in
+	status)
+		#echo 'Checking the status of service ${svcname} ... ...'
+		exec s6-svstat /var/run/s6/services/${svcname}
+	;;
+	start | up)
+		#echo 'Starting service ${svcname} ... ...'
+		exec s6-svc -u /var/run/s6/services/${svcname}
+	;;
+	stop | down)
+		#echo 'Stoping service ${svcname} ... ...'
+		exec s6-svc -d /var/run/s6/services/${svcname}
+	;;
+	reload)
+		#echo 'Reloading service ${svcname} configurations... ...'
+		exec s6-svc -h /var/run/s6/services/${svcname}
+	;;
+	restart)
+		#echo 'Restarting service ${svcname} ... ...'
+		exec s6-svc -t /var/run/s6/services/${svcname}
+	;;
+esac 
+
+unset svcname s6action

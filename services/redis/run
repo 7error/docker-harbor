@@ -1,2 +1,2 @@
 #!/usr/bin/with-contenv sh
-/usr/local/bin/redis-server /etc/redis.conf
+exec /usr/local/bin/redis-server /etc/redis.conf

@@ -3,4 +3,4 @@
 
 /wait-for-postgres.sh -- /init-database.sh
 cd /harbor/
-envfile /etc/core/env /usr/local/bin/harbor_core
+exec envfile /etc/core/env /usr/local/bin/harbor_core

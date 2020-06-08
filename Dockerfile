@@ -122,6 +122,8 @@ ADD ./init-cert.sh /
 ADD ./init-database.sh /
 ADD ./etc /etc/
 ADD ./services /etc/services.d/
+ADD ./s6-service /usr/bin/
+RUN chmod +x /usr/bin/s6-service
 
 ENTRYPOINT ["/init"]
 

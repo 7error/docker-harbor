@@ -1,8 +1,6 @@
 #!/usr/bin/with-contenv sh
 
 . /etc/notary/signer_env
+/wait-for-postgres.sh -- /usr/local/bin/migrate-patch -database=${DB_URL} && /migrations/migrate.sh
 
-/wait-for-postgres.sh -- \
-/usr/local/bin/migrate-patch -database=$DB_URL && \
-/migrations/migrate.sh && \
-/usr/local/bin/notary-signer -config=/etc/notary/signer-config.postgres.json -logf=json
+exec /usr/local/bin/notary-signer -config=/etc/notary/signer-config.postgres.json -logf=json
