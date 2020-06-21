@@ -66,7 +66,7 @@ COPY --from=goharbor/harbor-registryctl:v1.10.3 /usr/bin/registry /usr/local/bin
 COPY --from=goharbor/harbor-registryctl:v1.10.3  /home/harbor/harbor_registryctl /usr/local/bin/harbor_registryctl
 
 
-RUN curl --fail --silent -L https://github.com/just-containers/s6-overlay/releases/download/v2.0.0.1/s6-overlay-amd64.tar.gz | tar -xzvf - -C /
+RUN ln -s /usr/local/bin/registry /usr/local/bin/registry_DO_NOT_USE_GC && curl --fail --silent -L https://github.com/just-containers/s6-overlay/releases/download/v2.0.0.1/s6-overlay-amd64.tar.gz | tar -xzvf - -C /
 
 
 RUN curl -sfSLk https://raw.githubusercontent.com/antirez/redis/5.0/redis.conf \
