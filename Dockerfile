@@ -69,7 +69,7 @@ COPY --from=goharbor/trivy-adapter-photon:v2.0.0 /usr/local/bin/trivy /usr/local
 COPY --from=goharbor/trivy-adapter-photon:v2.0.0 /home/scanner/bin/scanner-trivy /usr/local/bin/scanner-trivy
 
 
-RUN curl --fail --silent -L https://github.com/just-containers/s6-overlay/releases/download/v2.0.0.1/s6-overlay-amd64.tar.gz | tar -xzvf - -C /
+RUN ln -s /usr/local/bin/registry /usr/local/bin/registry_DO_NOT_USE_GC && curl --fail --silent -L https://github.com/just-containers/s6-overlay/releases/download/v2.0.0.1/s6-overlay-amd64.tar.gz | tar -xzvf - -C /
 
 
 RUN curl -sfSLk https://raw.githubusercontent.com/antirez/redis/5.0/redis.conf \
