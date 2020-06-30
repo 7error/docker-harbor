@@ -4,4 +4,4 @@
 sed -e "s@EXT_ENDPOINT@$EXT_ENDPOINT@g" /etc/notary/server-config.postgres.json.sed > /etc/notary/server-config.postgres.json
 /wait-for-postgres.sh -- /usr/local/bin/migrate-patch -database=$DB_URL && /migrations/migrate.sh
 
-exec /wait-for-it.sh 127.0.0.1:7899 -- /usr/local/bin/notary-server -config=/etc/notary/server-config.postgres.json -logf=json
+exec /wait-for-it.sh 127.0.0.1:7899 -- envfile /etc/notary/server_env /usr/local/bin/notary-server -config=/etc/notary/server-config.postgres.json -logf=json
