@@ -18,7 +18,7 @@ worker_pool:
   #Additional config if use 'redis' backend
   redis_pool:
     #redis://[arbitrary_username:password@]ipaddress:port/database_index
-    redis_url: redis://127.0.0.1:6379/2
+    redis_url: redis://127.0.0.1:6379/2?idle_timeout_seconds=30
     namespace: "harbor_job_service_namespace"
     idle_timeout_second: 3600
 #Loggers for the running job
