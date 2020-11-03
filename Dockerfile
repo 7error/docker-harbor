@@ -48,25 +48,25 @@ ENV PATH $PATH:/usr/lib/postgresql/$PG_MAJOR/bin
 ENV PGDATA /var/lib/postgresql/data
 
 COPY --from=postgres:12 /usr/local/bin/gosu /usr/local/bin/gosu
-COPY --from=goharbor/chartmuseum-photon:v2.1.0 /home/chart/chartm /usr/local/bin/chartm
-COPY --from=goharbor/clair-adapter-photon:v2.1.0 /clair-adapter/clair-adapter /usr/local/bin/clair-adapter
-COPY --from=goharbor/clair-photon:v2.1.0 /home/clair/clair /usr/local/bin/clair
-COPY --from=goharbor/harbor-core:v2.1.0 /harbor/harbor_core /usr/local/bin/harbor_core
-COPY --from=goharbor/harbor-core:v2.1.0 /harbor/migrations /harbor/migrations
-COPY --from=goharbor/harbor-core:v2.1.0 /harbor/views /harbor/views
-COPY --from=goharbor/harbor-jobservice:v2.1.0 /harbor/harbor_jobservice /usr/local/bin/harbor_jobservice
-COPY --from=goharbor/notary-server-photon:v2.1.0 /bin/migrate-patch /usr/local/bin/migrate-patch
-COPY --from=goharbor/notary-server-photon:v2.1.0 /bin/migrate /usr/local/bin/migrate
-COPY --from=goharbor/notary-server-photon:v2.1.0 /bin/notary-server /usr/local/bin/notary-server
-COPY --from=goharbor/notary-signer-photon:v2.1.0 /bin/notary-signer /usr/local/bin/notary-signer
-COPY --from=goharbor/notary-server-photon:v2.1.0 /migrations /migrations
+COPY --from=goharbor/chartmuseum-photon:v2.1.1 /home/chart/chartm /usr/local/bin/chartm
+COPY --from=goharbor/clair-adapter-photon:v2.1.1 /clair-adapter/clair-adapter /usr/local/bin/clair-adapter
+COPY --from=goharbor/clair-photon:v2.1.1 /home/clair/clair /usr/local/bin/clair
+COPY --from=goharbor/harbor-core:v2.1.1 /harbor/harbor_core /usr/local/bin/harbor_core
+COPY --from=goharbor/harbor-core:v2.1.1 /harbor/migrations /harbor/migrations
+COPY --from=goharbor/harbor-core:v2.1.1 /harbor/views /harbor/views
+COPY --from=goharbor/harbor-jobservice:v2.1.1 /harbor/harbor_jobservice /usr/local/bin/harbor_jobservice
+COPY --from=goharbor/notary-server-photon:v2.1.1 /bin/migrate-patch /usr/local/bin/migrate-patch
+COPY --from=goharbor/notary-server-photon:v2.1.1 /bin/migrate /usr/local/bin/migrate
+COPY --from=goharbor/notary-server-photon:v2.1.1 /bin/notary-server /usr/local/bin/notary-server
+COPY --from=goharbor/notary-signer-photon:v2.1.1 /bin/notary-signer /usr/local/bin/notary-signer
+COPY --from=goharbor/notary-server-photon:v2.1.1 /migrations /migrations
 
-COPY --from=goharbor/harbor-portal:v2.1.0 /usr/share/nginx/html /portal
-COPY --from=goharbor/registry-photon:v2.1.0 /usr/bin/registry_DO_NOT_USE_GC /usr/local/bin/registry
-COPY --from=goharbor/harbor-registryctl:v2.1.0  /home/harbor/harbor_registryctl /usr/local/bin/harbor_registryctl
+COPY --from=goharbor/harbor-portal:v2.1.1 /usr/share/nginx/html /portal
+COPY --from=goharbor/registry-photon:v2.1.1 /usr/bin/registry_DO_NOT_USE_GC /usr/local/bin/registry
+COPY --from=goharbor/harbor-registryctl:v2.1.1  /home/harbor/harbor_registryctl /usr/local/bin/harbor_registryctl
 
-COPY --from=goharbor/trivy-adapter-photon:v2.1.0 /usr/local/bin/trivy /usr/local/bin/trivy
-COPY --from=goharbor/trivy-adapter-photon:v2.1.0 /home/scanner/bin/scanner-trivy /usr/local/bin/scanner-trivy
+COPY --from=goharbor/trivy-adapter-photon:v2.1.1 /usr/local/bin/trivy /usr/local/bin/trivy
+COPY --from=goharbor/trivy-adapter-photon:v2.1.1 /home/scanner/bin/scanner-trivy /usr/local/bin/scanner-trivy
 
 
 RUN ln -s /usr/local/bin/registry /usr/local/bin/registry_DO_NOT_USE_GC && curl --fail --silent -L https://github.com/just-containers/s6-overlay/releases/download/v2.0.0.1/s6-overlay-amd64.tar.gz | tar -xzvf - -C /
